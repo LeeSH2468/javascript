@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바닐라JS - 노마드</title>
+  <style>
+    h1{text-align: center;}
+    .box{max-width:850px; margin:auto; border:1px solid #777; padding:10px 20px; border-radius: 5px; margin-bottom:30px;}
+    .box h2{font-size:1.8rem; margin:5px 0;}
+    /* .box p{font-weight: bold; font-size:1.3rem} */
+    .box span,.box li{font-size:0.9rem; margin:5px;}
+    .box p.note{font-weight:bold;font-size:1.2rem; margin:10px 0 0;}
+    .hideSlide{height:auto; transition:all .5s ease;}
+    .hideSlide.hide{height:0; overflow: hidden;}
+    .hideSlide pre{padding:20px; background-color:#eee; border-radius: 20px;}
+    .btn{display:inline-block; padding:5px 10px;font-weight:bold; color:#fff; cursor:pointer; border-radius: 10px; background-color:#ddd; transition: all .5s ease;}
+    .clickadd{background-color:#f76;}
+    
+  </style>
+</head>
+<body>
+<h1>바닐라JS</h1>
+<div class="box">
+  <h2>1. 버튼</h2>
+  <input type="button" id="target" value="button" />
+  <p class="note">클릭 함수 실행</p>
+  <span>버튼 클릭하면 글자 색 변하기</span>
+  <p class="slideToggle">▽ 코드</p>
+  <div class="hideSlide">
+    <pre>
+const t = document.getElementById('target');
+  function clickbtn(){
+    t.style.color = "#add";
+  }
+t.addEventListener('click', clickbtn);</pre>
+  </div>
+</div>
+<div class="box">
+  <h2>2. 계산기</h2>
+  <!-- <div style="max-width:117px; padding:0 15px; border:1px solid #aaa; border-radius: 10px; box-sizing: border-box;">
+    <p>
+      <input type="button" value="1" class="calbtn calcul1">
+      <input type="button" value="2" class="calbtn calcul2">
+      <input type="button" value="3" class="calbtn calcul3"><br/>
+      <input type="button" value="4" class="calbtn calcul4">
+      <input type="button" value="5" class="calbtn calcul5">
+      <input type="button" value="6" class="calbtn calcul6"><br/>
+      <input type="button" value="7" class="calbtn calcul7">
+      <input type="button" value="8" class="calbtn calcul8">
+      <input type="button" value="9" class="calbtn calcul9"><br/>
+      <input type="button" value="0" class="calbtn calcul0"><br/>
+      <input type="text" class="caltext" style="width:74px;">
+    </p>
+  </div> -->
+  <p id="codecalc">test</p>
+  <p class="slideToggle">▽ 코드</p>
+  <div class="hideSlide">
+    <pre>
+//계산기 함수
+const calculator = {
+    plus : function(a, b){
+        return (`${a}+${b}= ${a+b}`);
+    },
+    minis : function(a, b){
+        return (`${a}-${b}= ${a-b}`);
+    },
+    multiple : function(a, b){
+        return (`${a}*${b}= ${a*b}`);
+    },
+    divide : function(a, b){
+        return (`${a}/${b}= ${a/b}`);
+    },
+    remainder : function(a, b){
+        return (`${a}%${b}= ${a%b}`);
+    },
+    power : function(a, b){
+        return (`${a}**${b}= ${a**b}`);
+    }
+}
+const answer =[
+  calculator.plus(5,5),
+  calculator.minis(1,87),
+  calculator.multiple(5,6),
+  calculator.divide(68,5),
+  calculator.remainder(234,5),
+  calculator.power(3,2)
+]
+
+document.getElementById('codecalc').innerHTML = answer;</pre>
+  </div>
+</div>
+<div class="box">
+  <h2>3. 클릭시 변경</h2>
+  <span id="changeColor" class="btn">Click</span>
+  <p class="note">if문 / if-else</p>
+  <ol>
+    <li>글자 클릭하면 원래 색상값 받아오기</li>
+    <li>글자 색이 처음 지정 색과 같으면, 변경</li>
+    <li>글자 색이 처음 지정 색과 다르면, 원래 값으로 변경</li>
+  </ol>
+  <p class="slideToggle">▽ 코드</p>
+  <div class="hideSlide">
+    <pre>
+const changeColor = document.getElementById("changeColor");
+const Basic_color = "rgb(255, 170, 255)";
+const Othder_color = "rgb(170, 221, 170)";
+function handler(){
+  const nowColor = changeColor.style.color;
+    if(nowColor === Basic_color){
+      changeColor.style.color = Othder_color;
+    }else{
+      changeColor.style.color = Basic_color;
+    }
+  }
+  
+changeColor.addEventListener('click',handler);</pre>
+  </div>
+</div>
+<div class="box">
+  <h2>4. class추가, 제거</h2>
+  <span id="changeToggle" class="btn">Click</span>
+  <p class="note">if문 / if-else 2 </p>
+  <ol>
+    <li>글자 클릭하면 원래 색상값 받아오기</li>
+  </ol>
+  <p class="slideToggle">▽ 코드</p>
+  <div class="hideSlide">
+    <pre>
+const changeToggle = document.querySelector("#changeToggle");
+const clickClass = "clickadd";
+
+function handlerClick(){
+  const btnClass = changeToggle.className;
+  // const hasClass = changeToggle.classList.contains(clickClass);
+  // console.log(hasClass)
+  // if(!hasClass){
+  //   changeToggle.classList.add(clickClass);
+  // }else{
+  //   changeToggle.classList.remove(clickClass);
+  // }
+
+  changeToggle.classList.toggle(clickClass) //같은 기능
+
+}
+
+function init(){
+  changeToggle.addEventListener('click',handlerClick);
+}
+
+init();</pre>
+  </div>
+</div>
+<div class="box js-clock">
+  <h2>5. 자동 반복 setInterval</h2>
+  <span class="js-clock">00:00</span>
+  <p class="note">setInterval </p>
+  <ol>
+    <li>일정 시간마다 반복</li>
+    <li>setInterval(함수,실행시간 간격)</li>
+  </ol>
+  <p class="slideToggle">▽ 코드</p>
+  <div class="hideSlide">
+    <pre>
+</pre>
+  </div>
+</div>
+<script>
+
+// 5. 시계
+const clockContainer = document.querySelector('.js-clock');
+      clockTitle = clockContainer.querySelector("span");
+      //현재 시간 얻기
+function getTime(){
+  const date = new Date();
+        minutes = date.getMinutes();
+        hours = date.getHours();
+        seconds = date.getSeconds();
+        clockTitle.innerText = `${
+          hours < 10 ? `0${hours}` : hours
+        }:${
+          minutes < 10 ? `0${minutes}` : minutes
+        }:${
+          seconds < 10 ? `0${seconds}` : seconds
+        }`;
+}      
+
+function init2(){
+  getTime()
+  setInterval(getTime,1000)
+}
+init2()
+
+
+
+
+
+
+
+
+// 1. 버튼 함수
+const t = document.getElementById('target');
+  function clickbtn(){
+      t.style.color = "#add";
+  }
+  t.addEventListener('click', clickbtn);
+
+// 2. 계산기 함수
+const calculator = {
+    plus : function(a, b){
+        return (`${a}+${b}= ${a+b}`);
+    },
+    minis : function(a, b){
+        return (`${a}-${b}= ${a-b}`);
+    },
+    multiple : function(a, b){
+        return (`${a}*${b}= ${a*b}`);
+    },
+    divide : function(a, b){
+        return (`${a}/${b}= ${a/b}`);
+    },
+    remainder : function(a, b){
+        return (`${a}%${b}= ${a%b}`);
+    },
+    power : function(a, b){
+        return (`${a}**${b}= ${a**b}`);
+    }
+}
+// const calbtn = document.getElementsByClassName('calbtn')
+// const caltext = document.getElementsByClassName('caltext')
+//   function calculClick(){
+//     console.log('test')
+//   }
+// calbtn.addEventListener('click',calculClick);
+const answer =[
+  calculator.plus(5,5),
+  calculator.minis(1,87),
+  calculator.multiple(5,6),
+  calculator.divide(68,5),
+  calculator.remainder(234,5),
+  calculator.power(3,2)
+]
+document.getElementById('codecalc').innerHTML = answer;
+//prompt 조건문
+// const question = prompt("How old are you?");
+// if(question > 19){
+//   alert("ok");
+// }else{
+//   alert("no");
+// }
+
+// 3. if문 함수
+const changeColor = document.getElementById("changeColor");
+const Basic_color = "rgb(51, 90, 219)";
+const Othder_color = "rgb(255, 152, 0)";
+function handler(){
+    const nowColor = changeColor.style.backgroundColor;
+    if(nowColor === Basic_color){
+      changeColor.style.backgroundColor = Othder_color;
+    }else{
+      changeColor.style.backgroundColor = Basic_color;
+    }
+  }
+changeColor.addEventListener('click',handler);
+
+// 4. 클래스추가
+const changeToggle = document.querySelector("#changeToggle");
+const clickClass = "clickadd";
+
+function handlerClick(){
+  const btnClass = changeToggle.className;
+  // const hasClass = changeToggle.classList.contains(clickClass);
+  // console.log(hasClass)
+  // if(!hasClass){
+  //   changeToggle.classList.add(clickClass);
+  // }else{
+  //   changeToggle.classList.remove(clickClass);
+  // }
+  changeToggle.classList.toggle(clickClass); //같은 기능
+}
+
+function init(){
+  changeToggle.addEventListener('click',handlerClick);
+}
+init();
+
+
+</script>
+</body>
+</html>
