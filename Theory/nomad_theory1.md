@@ -343,6 +343,8 @@ console.log(answer)
 
 - 이벤트 참조 MDN사이트 : [Html JavaScript DOM event MDN](https://developer.mozilla.org/ko/docs/Web/Events)
 
+  
+
 #### addEventListener
 
 - 이벤트 등록하는 방법(가장 권장하는 방법)
@@ -355,7 +357,6 @@ console.log(answer)
   name.addEventListener('click',handlerClick);
   ```
   
-  
 #### className
 
 - 함수의 모든 클래스 명 찾기
@@ -364,7 +365,6 @@ console.log(answer)
   const className = name.className;
   console.log(className);
   ```
-  
   
 
 #### querySelector
@@ -379,7 +379,17 @@ console.log(answer)
   const myDiv = document.querySelector(".a"),
         child = myDiv.querySelector("h1");
   // child = myDiv안에 있는 h1
+  ```
+#### querySelectorAll
+
+- 모든 것을 선택
   
+- 배열 형식
+  
+  ```javascript
+  element = baseElement.querySelectorAll(selectors);
+  
+  const myDiv = document.querySelectorAll(".a");
   ```
 #### classList
 - class를 조작
@@ -425,3 +435,9 @@ console.log(answer)
   ```
 
   0+seconds 는 문자열로 인식. 백팁으로 감싸줘야한다.
+  
+  
+
+### 로컬스토리지
+
+- 컴퓨터에 사용자 정보 기억
