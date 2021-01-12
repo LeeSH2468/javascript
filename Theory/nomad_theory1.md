@@ -75,7 +75,7 @@
 
 ###  데이터타입 정렬
 
-- Array(어레이) 
+- Array(어레이) -배열
 
   -  배열(리스트) 형식. 
 
@@ -89,9 +89,11 @@
       weeks : ["Mon","Tue","Wed","Thu","Fri","Set","Sun"]
       ```
   
-- Object(오브젝트)
+- Object(오브젝트)-객체
 
   - 실제 객체를 정의
+
+  - 키-값 형식으로 정보를 저장
 
   - label 에 date 값을 줄 수 있음
 
@@ -102,11 +104,11 @@
   - 오브젝트 안에 Array(배열)로 정의 가능.
 
   - const로 정의해도 내부 값은 변경 가능(오브젝트 변수 명은 변경 불가)
-
+  
     ```javascript
     const maniInfo = {
       name : "mani",
-  career : "Web Publisher",
+    career : "Web Publisher",
       ability : ["html","css","javascript"],
       education : [
             {
@@ -127,9 +129,9 @@
       ]
     }
     
-    console.log(maniInfo.education)
+  console.log(maniInfo.education)
     ```
-
+  
   
 
 ### 함수
