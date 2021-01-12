@@ -16,6 +16,8 @@
     .hideSlide pre{padding:20px; background-color:#eee; border-radius: 20px;}
     .btn{display:inline-block; padding:5px 10px;font-weight:bold; color:#fff; cursor:pointer; border-radius: 10px; background-color:#ddd; transition: all .5s ease;}
     .clickadd{background-color:#f76;}
+    .form,.greetings{display:none;}
+    .showing{display:block;}
     
   </style>
 </head>
@@ -192,9 +194,10 @@ init2();
 </div>
 <div class="box">
   <h2>6. 사용자 정보 기억(로컬 스토리지)</h2>
-    <form class="js-form">
+    <form class="js-form form">
       <input type="text" placeholder="What is your name?">
     </form>
+    <h4 class="js-greetings greetings">t</h4>
   <ol>
     <li>로컬 스토리지 정보 : 관리자도구 > Application > Local Storage</li>
   </ol>
@@ -208,8 +211,54 @@ init2();
 <script>
 // 6. 사용자 정보 기억
 const jsform=document.querySelector('.js-form');
-      input = jsform.querySelectorAll('input');
-console.log(jsform)
+      input = jsform.querySelector('input');
+      greeting = document.querySelector('.js-greetings');
+const USER_LS = "currentUser"; // 키값이름
+      SHOWING_CN = "showing";
+
+function saveName(text){
+  localStorage.setItem(USER_LS,text)
+}
+
+function handleSubmit(event){
+  event.preventDefault();
+  const cValur = input.value;
+  paintGreeting(cValur);
+  saveName(cValur)
+}     
+
+function askForName(){
+  jsform.classList.add(SHOWING_CN);
+  jsform.addEventListener("submit",handleSubmit);
+}
+function paintGreeting(text){
+  jsform.classList.remove(SHOWING_CN);
+  greeting.classList.add(SHOWING_CN);
+  greeting.innerText = `${text}, Do It!`
+
+}
+function loadName(){
+  const currentUser = localStorage.getItem(USER_LS);
+  if(currentUser === null){
+    // 값이 없을 때
+    askForName();
+    console.log('test')
+  }else{
+    // 값이 있을 때
+    paintGreeting(currentUser);
+    console.log('2')
+  }
+}
+
+function init3(){
+  loadName()
+}
+init3();
+
+
+
+
+
 
 // 1. 버튼 함수
 const t = document.getElementById('target');

@@ -129,10 +129,13 @@
       ]
     }
     
+    ```
+  
   console.log(maniInfo.education)
     ```
   
   
+    ```
 
 ### 함수
 - 어떤 것의 수행하는 기능
@@ -442,4 +445,48 @@ console.log(answer)
 
 ### 로컬스토리지
 
-- 컴퓨터에 사용자 정보 기억
+- 컴퓨터에 사용자 정보 기억. 
+- 새로고침해도 그대로 유지
+- 로컬 스토리지 정보 : 관리자도구 > Application > Local Storag
+
+```javascript
+localStorage.setItem("test",true);// 새로고침해도 값 유지
+localStorage.getItem("test") >> true
+```
+
+```javascript
+// 6. 사용자 정보 기억
+const jsform=document.querySelector('.js-form');
+      input = jsform.querySelectorAll('input');
+      greeting = document.querySelector('.js-greetings'); //h4태그
+const USER_LS = "currentUser"; //로컬스토리지에 저장할 키값을 변수로 지정
+      SHOWING_CN = "showing"; //display:block 인 클래스 명
+
+function paintGreeting(text){
+  jsform.classList.remove(SHOWING_CN) //block 클래스 제거
+  greeting.classList.add(SHOWING_CN); //block 클래스 추가
+  greeting.innerText = `${text}, Do It!` //h4 태그 안에 문구 추가
+}
+
+function loadName(){
+  const currentUser = localStorage.getItem(USER_LS); //로컬 스토리지에 USER_LS 이름 받아오기
+  if(currentUser === null){
+    // 값이 없을 때
+  }else{
+    // 값이 있을 때
+    paintGreeting(currentUser); //값이 있을 때 문구 추가, 문구 = 유저명
+  }
+}
+
+function init3(){
+  loadName(); //실행
+}
+init3();//실행
+```
+
+### input
+
+input의 여러 요소 바꾸기
+
+input.placeholder = "원하는 값"
+
