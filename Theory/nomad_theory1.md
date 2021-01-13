@@ -310,12 +310,38 @@ console.log(answer)
   }
  ```
 
-	#### 논리연산자
+#### 논리연산자
 
-- and = "&&"
-- or = "||"
-- same = "==="
-
+<table class="txc-table" style="border:none;border-collapse:collapse;;font-family:" 맑은="" 고딕",="" sans-serif;font-size:15px"="" width="784" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td style="width: 261px; height: 24px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(230, 230, 230); color: rgb(0, 0, 0);"><p style="text-align: center;">&nbsp;관계 연산자</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-top: 1px solid rgb(0, 0, 0); background-color: rgb(230, 230, 230); color: rgb(0, 0, 0);"><p style="text-align: center;">예시&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-top: 1px solid rgb(0, 0, 0); background-color: rgb(230, 230, 230); color: rgb(0, 0, 0);"><p style="text-align: center;">명제</p></td>
+</tr>
+<tr><td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-left: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">==&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a == b&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a와 b가 같다.&nbsp;</p></td>
+</tr>
+<tr><td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-left: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">&nbsp;!=</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a != b&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a와 b가 다르다.<span style="background-color: transparent;">&nbsp;</span></p></td>
+</tr>
+<tr><td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-left: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">&nbsp;&gt;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a &gt; b&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a가 b보다 크다.&nbsp;</p></td>
+</tr>
+<tr><td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-left: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">&nbsp;&gt;=</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a &gt;= b&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a가 b보다 크거나 같다.&nbsp;</p></td>
+</tr>
+<tr><td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-left: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">&nbsp;&lt;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a &lt; b&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a가 b보다 작다.&nbsp;</p></td>
+</tr>
+<tr><td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); border-left: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">&nbsp;&lt;=</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a&lt;=b&nbsp;</p></td>
+<td style="width: 261px; height: 24px; border-bottom: 1px solid rgb(0, 0, 0); border-right: 1px solid rgb(0, 0, 0); background-color: transparent; color: rgb(0, 0, 0);"><p style="text-align: center;">a가 b보다 작거나 같다.&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
 
 
 ### * prompt
@@ -448,6 +474,7 @@ console.log(answer)
 - 컴퓨터에 사용자 정보 기억. 
 - 새로고침해도 그대로 유지
 - 로컬 스토리지 정보 : 관리자도구 > Application > Local Storag
+- 로컬 스토리지의 정보는 도메인 기준으로 적용. 다른 도메인 불가능
 
 ```javascript
 localStorage.setItem("test",true);// 새로고침해도 값 유지
