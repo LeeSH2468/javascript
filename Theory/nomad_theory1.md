@@ -434,6 +434,18 @@ console.log(answer)
   
   ```
 
+### 삼항연산자
+
+- if문 축약형
+
+- 조건 ?  참일 때 : 거짓일 때
+
+  ```
+  seconds < 10 ? `0${seconds}` : seconds
+  ```
+
+  0+seconds 는 문자열로 인식. 백팁으로 감싸줘야한다.
+  
 
 
 
@@ -453,20 +465,6 @@ console.log(answer)
 
 - setInterval(함수, 실행시간 간격) : 일정 시간마다 자동으로 변경 
 
-
-
-### 삼항연산자
-
-- if문 축약형
-
-- 조건 ?  참일 때 : 거짓일 때
-
-  ```
-  seconds < 10 ? `0${seconds}` : seconds
-  ```
-
-  0+seconds 는 문자열로 인식. 백팁으로 감싸줘야한다.
-  
   
 
 ### 로컬스토리지
