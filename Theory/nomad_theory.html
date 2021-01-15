@@ -8,17 +8,15 @@
     h1{text-align: center;}
     .box{max-width:850px; margin:auto; border:1px solid #777; padding:10px 20px; border-radius: 5px; margin-bottom:30px;}
     .box h2{font-size:1.8rem; margin:10px 0;}
-    /* .box p{font-weight: bold; font-size:1.3rem} */
     .box span,.box li{font-size:0.9rem; margin:5px;}
     .box p.note{font-weight:bold;font-size:1.2rem; margin:10px 0 0;}
     .hideSlide{height:auto; transition:all .5s ease;}
     .hideSlide.hide{height:0; overflow: hidden;}
-    .hideSlide pre{padding:20px; background-color:#eee; border-radius: 20px;}
+    .hideSlide pre{padding:20px; background-color:#eee; border-radius: 20px; overflow-x: scroll;}
     .btn{display:inline-block; padding:5px 10px;font-weight:bold; color:#fff; cursor:pointer; border-radius: 10px; background-color:#ddd; transition: all .5s ease;}
     .clickadd{background-color:#f76;}
-    .form,.greetings{display:none;}
-    .showing{display:block;}
-    
+    .hiding,.form,.greetings{display:none;}
+    .showing{display:block;}    
   </style>
 </head>
 <body>
@@ -451,11 +449,11 @@ function loadName(){
   if(currentUser === null){
     // 값이 없을 때
     askForName();
-    console.log('test')
+    console.log('test');
   }else{
     // 값이 있을 때
     paintGreeting(currentUser);
-    console.log('2')
+    console.log('2');
   }
 }
 
