@@ -38,21 +38,7 @@ t.addEventListener('click', clickbtn);</pre>
 </div>
 <div class="box">
   <h2>2. 계산기</h2>
-  <!-- <div style="max-width:117px; padding:0 15px; border:1px solid #aaa; border-radius: 10px; box-sizing: border-box;">
-    <p>
-      <input type="button" value="1" class="calbtn calcul1">
-      <input type="button" value="2" class="calbtn calcul2">
-      <input type="button" value="3" class="calbtn calcul3"><br/>
-      <input type="button" value="4" class="calbtn calcul4">
-      <input type="button" value="5" class="calbtn calcul5">
-      <input type="button" value="6" class="calbtn calcul6"><br/>
-      <input type="button" value="7" class="calbtn calcul7">
-      <input type="button" value="8" class="calbtn calcul8">
-      <input type="button" value="9" class="calbtn calcul9"><br/>
-      <input type="button" value="0" class="calbtn calcul0"><br/>
-      <input type="text" class="caltext" style="width:74px;">
-    </p>
-  </div> -->
+
   <p id="codecalc">test</p>
   <p class="slideToggle">▽ 코드</p>
   <div class="hideSlide">
@@ -195,7 +181,7 @@ init2();
     <form class="js-form form">
       <input type="text" placeholder="What is your name?">
     </form>
-    <h4 class="js-greetings greetings">t</h4>
+    <h4 class="js-greetings greetings"></h4>
   <ol>
     <li>로컬 스토리지 정보 : 관리자도구 > Application > Local Storage</li>
     <li>키값명 변수로 지정</li>
@@ -211,7 +197,7 @@ init2();
       </ul>
     </li>
     <li> paintGreeting(text)
-      <p>form(입력창)에서 값 제출시(엔터) 실행되는 함수</p>
+      <p>저장된 값이 있을 때 실행되는 함수</p>
       <ul style="border:1px solid #aaa; border-radius: 20px;">
         <li>제출 후, form(입력창)-hide</li>
         <li>greeting(결과 문구창)-show</li>
@@ -293,9 +279,13 @@ init3(); //함수실행
 </pre>
   </div>
 </div>
+
 <div class="box">
   <h2>7.TO Do List</h2>
-  <span>Click</span>
+  <form class="todoform">
+    <input type="text" placeholder="Write a to do">
+  </form>
+  <ul class="js-todoList"></ul>
   <p class="note">if문 / if-else</p>
   <ol>
     <li>글자 클릭하면 원래 색상값 받아오기</li>
@@ -309,6 +299,65 @@ init3(); //함수실행
 
 <!-- ====================================================================================  -->
 <script>
+// 7.to-do list
+const tdForm = document.querySelector('.todoform'),
+      tdInput = tdForm.querySelector('input'),
+      tdList = document.querySelector('.js-todoList');
+
+const TODOS_LS = 'toDos';
+
+const toDos = [];
+
+function saveTodos(){
+  localStorage.setItem(TODOS_LS,JSON.stringify(toDos));
+}
+
+function paintToDo(text){
+  const li = document.createElement('li');
+  const delbtn = document.createElement('button');
+  const span = document.createElement('span');
+  const newId = toDos.length + 1
+  delbtn.innerText = '❌'
+  span.innerText = text;
+  li.appendChild(span);
+  li.appendChild(delbtn);
+  li.id = newId;
+  tdList.appendChild(li);
+  const todoObj = {
+    text : text,
+    id : newId
+  };
+  toDos.push(todoObj)
+  saveTodos();
+}
+
+function handleSubmit2(event){
+  event.preventDefault();
+  const currentValue = tdInput.value;
+  paintToDo(currentValue)
+  tdInput.value  = ''
+}
+
+function loadToDos(){
+  const loadedToDos = localStorage.getItem(TODOS_LS);
+  if(loadedToDos !== null){
+    const parTODOS = JSON.parse(loadedToDos);
+    parTODOS.forEach(function(toDo){
+      paintToDo(toDo.text);
+    })
+  }
+}
+
+function init4(){
+  loadToDos();
+  tdForm.addEventListener("submit",handleSubmit2)
+}
+init4(); 
+
+
+
+
+
 // 1. 버튼 함수
 const t = document.getElementById('target');
   function clickbtn(){
@@ -396,7 +445,7 @@ function init(){
 init();
 
 // 5. 시계
-const clockContainer = document.querySelector('.js-clock');
+const clockContainer = document.querySelector('.js-clock'),
       clockTitle = clockContainer.querySelector("span");
       //현재 시간 얻기
 function getTime(){

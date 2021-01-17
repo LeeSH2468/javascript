@@ -213,18 +213,36 @@
 #### console.log
 
   - 브라우저의 내장 함수(built-in function)
-
   - console.log(maniInfo.education)
-
   - Object(객체) = console / maniInfo
-
   - Key (값)= log / education
-
   - Argument(인자) = log( ) 내부에 들어가는 값
-
   - console.dir = 할 수 있는 모든 것(이벤트)을 보여줌
 
-    
+
+#### input
+
+input의 여러 요소 바꾸기
+
+input.placeholder = "원하는 값"
+
+
+
+#### JOSN (JavaScript Object Notation)
+
+- 데이터를 전달할 때, 자바스크립트가 그 데이터를 다룰 수 있도록 object로 바꿔주는 기능
+
+- object > string으로,  string > object 으로 변경
+
+##### JSON.stringify
+
+- object > string
+
+##### JSON.parse
+
+- string > object 
+
+
 
 ### 계산기 함수
 
@@ -473,6 +491,7 @@ console.log(answer)
 - 새로고침해도 그대로 유지
 - 로컬 스토리지 정보 : 관리자도구 > Application > Local Storag
 - 로컬 스토리지의 정보는 도메인 기준으로 적용. 다른 도메인 불가능
+- data 값 저장 불가능. only String형식만 가능(JSON.stringify로 object>string형식으로 변경)
 
 ```javascript
 localStorage.setItem("test",true);// 새로고침해도 값 유지
@@ -509,9 +528,39 @@ function init3(){
 init3();//실행
 ```
 
-### input
 
-input의 여러 요소 바꾸기
 
-input.placeholder = "원하는 값"
+### To-do list
 
+createElement
+
+appendChild
+
+push
+
+id
+
+event.target
+
+event.target.parentNode;
+
+filter : 함수를 모두 실행하고 거기서 ture값만 걸러내 array를 생성
+
+forEach = 함수 실행, array 안에 있는 것을 각각 한 번씩 실행
+
+
+
+- li값 초기화(작성창 비우기)
+
+	- 입력시 input.value = "";
+- 작성시 todo(li)생성 
+  - li는 각자 id값을 가짐
+  - 비어있는 li생성, button생성, span생성(ducument.createElement)
+  - span안에 text(작성한 값) 넣기 (span.innerText)
+  - li안에 button, span 넣기(appendChild)
+  - li를 ul안에 넣기(ul.appendChild(li))
+- 목록저장
+  - 비어있는 목록 변수지정(array형식으로 저장되어야함)
+  - array 안에 입력한 값과 갯수+1을 id로 저장(id= 키값. 객체의 id값 아님)(arrya.push(입력데이터))
+- 로컬에 저장
+- x누르면 삭제 
