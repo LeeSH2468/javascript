@@ -251,9 +251,28 @@ input.placeholder = "원하는 값"
 
 #### createTextNode
 
+- document.createTextNode('text')
+- 요소 안에 텍스트 추가
+
 #### appendChild
 
-- 
+- ul.appendChild('li')
+- 선택한 요소 안에 자식 요소를 추가(ul안에 li추가)
+
+#### push, pop, shift, unshift, splice, slice
+
+- 배열추가, 삭제
+
+- array.push('추가할요소')
+
+- push : 배열의 끝에 요소 추가
+- unshift : 배열의 처음에 요소 추가
+- pop : 배열의 마지막 요소 삭제
+- shift : 배열의 처음 요소 삭제
+- slice : 배열을 복제
+- splice(n,m) : index n (n번째) 부터 m개 요소 제거
+  - splice(2,1) : index 2번째부터 1개제거
+  - n : 시작위치 / m : 제거개수
 
 
 
@@ -472,6 +491,12 @@ console.log(answer)
   
   ```
 
+#### event.target
+
+- 이벤트 대상 얻기
+
+
+
 ### 삼항연산자
 
 - if문 축약형
@@ -554,15 +579,9 @@ init3();//실행
 
 
 
+event.target - 선택한(클릭한) 요소가 무엇인지 나타냄
 
-
-push
-
-id
-
-event.target
-
-event.target.parentNode;
+event.target.parentNode : 선택한(클릭한) 요소의 부모요소 선택
 
 filter : 함수를 모두 실행하고 거기서 ture값만 걸러내 array를 생성
 
@@ -573,14 +592,48 @@ forEach = 함수 실행, array 안에 있는 것을 각각 한 번씩 실행
 - li값 초기화(작성창 비우기)
 
 	- 입력시 input.value = "";
+	
 - 작성시 todo(li)생성 
   - li는 각자 id값을 가짐
   - 비어있는 li생성, button생성, span생성(ducument.createElement)
   - span안에 text(작성한 값) 넣기 (span.innerText)
   - li안에 button, span 넣기(appendChild)
   - li를 ul안에 넣기(ul.appendChild(li))
+  
 - 목록저장
   - 비어있는 목록 변수지정(array형식으로 저장되어야함)
-  - array 안에 입력한 값과 갯수+1을 id로 저장(id= 키값. 객체의 id값 아님)(arrya.push(입력데이터))
+  - array 안에 입력한 값과 개수+1을 id로 저장(id= 키값. 객체의 id값 아님)(arrya.push(입력데이터))
+  - li에 id값 주기 (li.id = 배열.length + 1)  //배열 개수+1
+  
 - 로컬에 저장
-- x누르면 삭제 
+
+  - 배열을 가져와서 로컬에 저장
+  - localStorage.setItem(key값, 배열)
+  - 로컬스토리지는 string만 저장 가능(data 불가능)
+  - JSON.stringify 으로 object(객체)를 string(문자열)로 변경
+  - load 할 때는 JSON.parse를 이용해 string(문자열)을 object(객체)로 변경
+
+- 각각의 항목에 생성함수 실행
+
+  - forEach = 함수 실행, array 안에 있는 것을 각각 한 번씩 실행
+
+- x누르면 삭제 - htm에서 삭제
+
+  - 버튼 생성할 때 클릭이벤트 추가
+
+  - delbtn.addEventListener("click",delHandel)
+
+  - event.target.parentNode : 클릭한 버튼의 부모인 li를 선택
+
+  - ul.removeChild(li) : 클릭한 버튼의 부모인 li를, ul에서 삭제
+
+    ```javascript
+      const btn = event.target; // 선택한 버튼
+      const li = btn.parentNode; //삭제될 li(선택한 버튼의 부모)
+      tdList.removeChild(li)
+    ```
+
+    
+
+- x누르면 삭제 - 로컬스토리지에서 삭제 
+

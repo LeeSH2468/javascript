@@ -308,6 +308,14 @@ const TODOS_LS = 'toDos';
 
 const toDos = [];
 
+function deleteToDo(){
+  const btn = event.target; // 선택한 버튼
+  const li = btn.parentNode; //삭제될 li(선택한 버튼의 부모)
+  tdList.removeChild(li);
+  const cleanToDos = toDos.filter();
+
+}
+
 function saveTodos(){
   localStorage.setItem(TODOS_LS,JSON.stringify(toDos));
 }
@@ -318,6 +326,7 @@ function paintToDo(text){
   const span = document.createElement('span');
   const newId = toDos.length + 1
   delbtn.innerText = '❌'
+  delbtn.addEventListener('click',deleteToDo)
   span.innerText = text;
   li.appendChild(span);
   li.appendChild(delbtn);
