@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todolist</title>
+  <style>
+    .hide{display:none;}
+    .show{display:block;}
+  </style>
+</head>
+<body>
+  <h1>MANI's To Do List</h1>
+  <form class="nameForm">
+    <input type="text" placeholder="Write your name">
+  </form>
+  <h2></h2>
+  <form>
+    <input type="text" placeholder="Add task">
+  </form>
+  <h3>Pending</h3>
+  <ul class="pendUl"></ul>
+  <h3>Finished</h3>
+  <ul class="finishUl"></ul>
+  <script>
+    // Name function S =============================================
+    const h2 = document.querySelector('h2'),
+          nameForm = document.querySelector('.nameForm'),
+          nameInput = nameForm.querySelector('input'),
+          USER_NAME = "name";
+    
+    function saveValue(text){
+      localStorage.setItem(USER_NAME,text);
+    }
+
+    function paintName(text){
+      nameForm.classList.add('hide');
+      nameForm.classList.remove('show');
+      h2.classList.remove('hide');
+      h2.classList.add('show');
+      h2.innerText = `${text}, Do It!`;
+    }
+
+    function submitHandler(event){
+      event.preventDefault();
+      const nameValue = nameInput.value;
+      paintName(nameValue);
+      saveValue(nameValue);
+    }
+
+    function askName(){
+      nameForm.classList.remove('hide');
+      nameForm.classList.add('show');
+      h2.classList.add('hide');
+      h2.classList.remove('show');
+      nameForm.addEventListener("submit",submitHandler);
+    }
+    
+    function loadName(){
+      const userName = localStorage.getItem(USER_NAME);
+      if(userName == null){
+        askName();
+      }else{
+        paintName(userName);
+      }
+    }
+    // Name function E =============================================
+    // Add task function S =========================================
+    const pendUl = document.querySelector('pendUl');
+    const finishUl = document.querySelector('finishUl');
+    function loadTask(){
+      console.log('a')
+    }
+    // Add task function E =========================================
+
+
+    function init(){
+      loadName();
+      loadTask();
+    }
+    init();
+    
+  </script>
+</body>
+</html>
