@@ -244,6 +244,20 @@ input.placeholder = "원하는 값"
 
 
 
+#### createElement
+
+- document.createElement(object)
+- object를 생성
+
+#### createTextNode
+
+#### appendChild
+
+- 
+
+
+
+
 ### 계산기 함수
 
 - 정의한 함수 calculator 는 객채이다
@@ -402,8 +416,14 @@ console.log(answer)
 
 - ie8이하 지원x (ie8이하는 attachEvent)
 
+- form 형식에 사용할 경우 form에 추가해야함.
+
   ```javascript
   name.addEventListener('click',handlerClick);
+  
+  //form 형식의 경우
+  form.addEventListener("submit",submitHandler); // O
+  input.addEventListener("submit",submitHandler); // X
   ```
   
 #### className
@@ -532,9 +552,9 @@ init3();//실행
 
 ### To-do list
 
-createElement
 
-appendChild
+
+
 
 push
 
