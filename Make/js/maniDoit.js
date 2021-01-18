@@ -1,1 +1,5 @@
-console.log('test')
+function init(){
+
+}
+
+init();
