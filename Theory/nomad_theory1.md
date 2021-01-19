@@ -633,7 +633,23 @@ forEach = 함수 실행, array 안에 있는 것을 각각 한 번씩 실행
       tdList.removeChild(li)
     ```
 
-    
-
 - x누르면 삭제 - 로컬스토리지에서 삭제 
 
+  - filter : 함수를 모두 실행하고 거기서 ture값만 걸러내 array를 생성
+
+  - html에서 삭제 후 로컬array(li의 id값)와 html array를 비교해서 다른 것을 삭제
+
+  - li의 id는 string로 인식되므로 parseInt(li.id) 로 number타입으로 변경
+
+    ```javascript
+    let toDos = [];
+    const cleanToDos = toDos.filter(function(toDo){
+        return toDo.id !== parseInt(li.id); 
+    });
+     toDos = cleanToDos //toDos에 값이 삭제된 cleanToDos를 대입
+     saveToDos(); //로컬에 새로운 값 저장
+                               
+    
+    ```
+
+    

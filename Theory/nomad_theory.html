@@ -305,14 +305,30 @@ const tdForm = document.querySelector('.todoform'),
       tdList = document.querySelector('.js-todoList');
 
 const TODOS_LS = 'toDos';
+let idNum = 1;
+let toDos = [];
 
-const toDos = [];
-
-function deleteToDo(){
+function deleteToDo(event){
   const btn = event.target; // 선택한 버튼
   const li = btn.parentNode; //삭제될 li(선택한 버튼의 부모)
   tdList.removeChild(li);
-  const cleanToDos = toDos.filter();
+  console.log(idNum,"1");
+
+  while(tdList.firstChild){
+    tdList.removeChild(tdList.firstChild);
+  }
+  idNum = 1;
+  console.log(idNum,"2");
+
+  const cleanToDos = toDos.filter(function(toDo){
+    toDo.id = idNum;
+    paintToDo(toDo.text);
+    return toDo.id !== parseInt(li.id); 
+  });
+  toDos = cleanToDos;
+  saveTodos();
+  console.log(idNum,"3");
+
 
 }
 
@@ -324,9 +340,10 @@ function paintToDo(text){
   const li = document.createElement('li');
   const delbtn = document.createElement('button');
   const span = document.createElement('span');
-  const newId = toDos.length + 1
+  const newId = idNum;
+  idNum +=1;
   delbtn.innerText = '❌'
-  delbtn.addEventListener('click',deleteToDo)
+  delbtn.addEventListener('click',deleteToDo);
   span.innerText = text;
   li.appendChild(span);
   li.appendChild(delbtn);
@@ -336,7 +353,7 @@ function paintToDo(text){
     text : text,
     id : newId
   };
-  toDos.push(todoObj)
+  toDos.push(todoObj);
   saveTodos();
 }
 
