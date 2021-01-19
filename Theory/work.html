@@ -6,7 +6,7 @@
   <title>todolist</title>
   <style>
     .hide{display:none;}
-    .show{display:block;}
+    .show{display:inline-block;}
   </style>
 </head>
 <body>
@@ -15,7 +15,7 @@
     <input type="text" placeholder="Write your name">
   </form>
   <h2></h2>
-  <form>
+  <form class="taskForm">
     <input type="text" placeholder="Add task">
   </form>
   <h3>Pending</h3>
@@ -23,7 +23,141 @@
   <h3>Finished</h3>
   <ul class="finishUl"></ul>
   <script>
+    // Add task function S =========================================
+    const taskForm = document.querySelector('.taskForm'),
+          taskInput = taskForm.querySelector('input'),
+          pendUl = document.querySelector('.pendUl'),
+          finishUl = document.querySelector('.finishUl');
+    const TASK_LS = "task"
+    const FINISH_LS = "finish"
+
+    let taskList = [];
+    let finishList = [];
+
+    function saveTask(){
+      localStorage.setItem(TASK_LS,JSON.stringify(taskList));
+    }
+    function saveCheck(){
+      localStorage.setItem(FINISH_LS,JSON.stringify(finishList));
+    }
+
+    function delClick(e){
+      const btn = e.target;
+      const li = btn.parentNode;
+      pendUl.removeChild(li);
+      const cleanTask = taskList.filter(function(toDo){
+        return toDo.id !== parseInt(li.id); 
+      });
+      taskList = cleanTask;
+      saveTask();
+    }
+
+    function checklClick(e){
+      const btn = e.target;
+      const li = btn.parentNode;
+      li.querySelector('.returnbtn').classList.add('show');
+      li.querySelector('.returnbtn').classList.remove('hide');
+      btn.classList.remove('show');
+      btn.classList.add('hide');
+      finishUl.appendChild(li);
+      const taskObj = {
+        text : li.querySelector('span').innerText,
+        id : li.id
+      }
+      finishList.push(taskObj);
+      const cleanTask = taskList.filter(function(toDo){
+        return toDo.id !== parseInt(li.id); 
+      });
+
+      taskList = cleanTask;
+
+      saveTask();
+      saveCheck();
+
+    }
+
+    function returnClick(e){
+      const btn = e.target;
+      const li = btn.parentNode;
+      li.querySelector('.returnbtn').classList.remove('show');
+      li.querySelector('.returnbtn').classList.add('hide');
+      btn.classList.add('show');
+      btn.classList.remove('hide');
+      finishUl.removeChild(li);
+      pendUl.appendChild(li);
+      const taskObj = {
+        text : li.querySelector('span').innerText,
+        id : li.id
+      }
+      finishList.push(taskObj);
+      const cleanTask = taskList.filter(function(toDo){
+        return toDo.id !== parseInt(li.id); 
+      });
+
+      taskList = cleanTask;
+
+      saveTask();
+      saveCheck();
+    }
+
+    function upTodo(text){
+      const li = document.createElement('li'),
+            span = document.createElement('span'),
+            delbtn = document.createElement('button'),
+            checkbtn = document.createElement('button'),
+            returnbtn = document.createElement('button');
+      
+      const newId = taskList.length + 1
+      
+      delbtn.innerText = "❌";
+      delbtn.addEventListener("click",delClick);
+      checkbtn.innerText = "✔";
+      checkbtn.addEventListener("click",checklClick);
+      checkbtn.classList.add('show','checkbtn')
+      returnbtn.innerText = "🔄";
+      returnbtn.addEventListener("click",returnClick);
+      returnbtn.classList.add('hide','returnbtn')
+      span.innerText = text;
+      li.appendChild(span);
+      li.appendChild(delbtn);
+      li.appendChild(checkbtn);
+      li.appendChild(returnbtn);
+      li.id = newId
+      pendUl.appendChild(li);
+      const taskObj = {
+        text : text,
+        id : newId
+      }
+      taskList.push(taskObj);
+      saveTask();
+    }
+
+    function taskSubmit(e){
+      e.preventDefault();
+      const tValue = taskInput.value;
+      upTodo(tValue);
+      taskInput.value = "";
+    }
+
+    function loadTask(){
+      const loadTask = localStorage.getItem(TASK_LS);
+      if(loadTask !== null){
+        const parTask = JSON.parse(loadTask);
+        parTask.forEach(function(task){
+          upTodo(task.text);
+        });
+      }
+
+      taskForm.addEventListener("submit",taskSubmit);
+    }
+    // Add task function E =========================================
+
+
+
+
+
     // Name function S =============================================
+    
     const h2 = document.querySelector('h2'),
           nameForm = document.querySelector('.nameForm'),
           nameInput = nameForm.querySelector('input'),
@@ -65,13 +199,7 @@
       }
     }
     // Name function E =============================================
-    // Add task function S =========================================
-    const pendUl = document.querySelector('pendUl');
-    const finishUl = document.querySelector('finishUl');
-    function loadTask(){
-      console.log('a')
-    }
-    // Add task function E =========================================
+
 
 
     function init(){

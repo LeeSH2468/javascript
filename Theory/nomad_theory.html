@@ -312,14 +312,11 @@ function deleteToDo(event){
   const btn = event.target; // 선택한 버튼
   const li = btn.parentNode; //삭제될 li(선택한 버튼의 부모)
   tdList.removeChild(li);
-  console.log(idNum,"1");
 
   while(tdList.firstChild){
     tdList.removeChild(tdList.firstChild);
-  }
+  }  
   idNum = 1;
-  console.log(idNum,"2");
-
   const cleanToDos = toDos.filter(function(toDo){
     toDo.id = idNum;
     paintToDo(toDo.text);
@@ -327,7 +324,6 @@ function deleteToDo(event){
   });
   toDos = cleanToDos;
   saveTodos();
-  console.log(idNum,"3");
 
 
 }
@@ -376,7 +372,7 @@ function loadToDos(){
 
 function init4(){
   loadToDos();
-  tdForm.addEventListener("submit",handleSubmit2)
+  tdForm.addEventListener("submit",handleSubmit2);
 }
 init4(); 
 

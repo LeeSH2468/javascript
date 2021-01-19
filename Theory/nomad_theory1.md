@@ -108,7 +108,7 @@
     ```javascript
     const maniInfo = {
       name : "mani",
-    career : "Web Publisher",
+      career : "Web Publisher",
       ability : ["html","css","javascript"],
       education : [
             {
