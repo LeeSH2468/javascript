@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Game</title>
+  <style>
+.bold{font-weight: bold; font-size:40px}
+  </style>
+</head>
+<body>
+  <h1>Random Number Game</h1>
+
+  <h2>Generate a number between 0 and <span>0</span></h2>
+  <form>
+    <input id="range" type="range" min="0" max="200" value="0">
+    <input id="numInput" type="number" placeholder="숫자를 입력해 주세요">
+    <button id="subbtn">Play!</button>
+    <p class="chosesen"></p>
+    <p class="resultsen bold"></p>
+  </form>
+
+  <script>
+    const h2 = document.querySelector('h2');
+    const lastNum = h2.querySelector('span');
+    const numForm = document.querySelector('form')
+    const rangeInput = numForm.querySelector('#range');
+    const numInput = numForm.querySelector('#numInput');
+    const subbtn = numForm.querySelector('#subbtn');
+    const chosesen = numForm.querySelector('.chosesen');
+    const resultSen = numForm.querySelector('.resultsen');
+
+    // 랜덤숫자 지정
+    function makeRandom(min,max){
+      let randomVal = Math.floor(Math.random() * (max-min+1))  + min;
+      return randomVal;
+    }
+  
+    // 제출 버튼 클릭시 문구 생성
+    function subNum(event){
+      const ranVal = rangeInput.value;
+      event.preventDefault();
+      let texVal = numInput.value;
+      const randomNum = makeRandom(0,rangeInput.value);
+      const numTexVal = Number(texVal);
+
+      if(texVal == ""){
+        alert('숫자를 입력해주세요');
+      }else{
+
+        if(numTexVal > ranVal){
+          alert('범위 내에서 입력해주세요');
+          numInput.value = "";
+        }else{
+          chosesen.innerText = `You chose : ${texVal}, the machine chose : ${randomNum}`;
+          if(numTexVal === randomNum){
+            resultSen.innerText = 'You Win!'
+          }else{
+            resultSen.innerText = 'You Lose!'
+          }
+        }
+      }
+    }
+
+    // 게이지 옮기면 숫자 변경
+    function changeNum(){
+      const ranVal = rangeInput.value;
+      lastNum.innerText = ranVal;
+    }
+    
+    function init(){
+      rangeInput.addEventListener("input",changeNum);
+      numForm.addEventListener("submit",subNum);
+    }
+    init();
+
+  </script>
+</body>
+</html>
