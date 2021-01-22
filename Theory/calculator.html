@@ -8,11 +8,11 @@
     .clearfix:after{content:" "; clear:both; display:block;}
     h1{margin:50px 0 ;text-align: center;}
     .calculator{width:320px; margin:auto; padding:30px; background-color:#232425; border-radius: 20px; box-sizing: border-box;}
-    .calculator input{width:100%; height:40px; border:0; border-radius: 10px; background-color:transparent; color:#fff; text-align:right; font-size: 1.5rem;}
+    .calculator input{width:100%; height:40px; border:0; border-radius: 10px; background-color:transparent; color:#fff; text-align:right; font-size: 1.5rem; overflow: hidden;}
     .calculator input:focus{outline: none;}
     .calculator .btn{width:55px; height:55px; margin:4px; border-radius: 50px; background-color: #3c4043; border:0; color:#fff; font-size:1.1rem; text-align: center; outline: none; cursor: pointer;}
-    .calculator .resetbtn{width:100%; height: 45px; margin-bottom:8px;}
     .calculator .operbtn{background-color:#f19129}
+    .calculator .resetbtn{width:100%; height: 45px; margin-bottom:8px; background-color: #3c4043;}
     .numberbox{float:left; width:80%;}
     .operbox{float:right; width:20%;}
 
@@ -26,7 +26,7 @@
       <input type="text" readonly>
     </form>
     <div>
-      <input type="button" class="btn resetbtn" value="C" ><br />
+      <input type="button" class="btn resetbtn operbtn" value="C" ><br />
     </div>
     <div class="numberbox">
       <input type="button" class="btn numbtn" value="1">
@@ -51,25 +51,110 @@
   </div>
   
 <script>
-  const numbtn = document.getElementsByClassName('numbtn');
-  const operbtn = document.querySelector('.operbtn');
+  const btn = document.querySelectorAll('.btn');
+  const numbtn = document.querySelectorAll('.numbtn');
+  const operbtn = document.querySelectorAll('.operbtn');
   const calform = document.querySelector('form');
   const calInput = calform.querySelector('input');
+  const calculator = {
+    minis : function(a,b){
+      return a-b;
+    },
+    plus : function(a,b){
+      return a+b;
+    },
+    divide : function(a,b){
+      return a*b
+    },
+    remainder : function(a,b){
+      return a/b
+    },
+    reset : function(){
+      
+    }
+
+  }
   
-function numClick(e){
+function firstVal(a){
+    //처음값
+  console.log('처음값',a);
+  const baseVal = a;
+
+    // if(btnVal == 'C'){
+    //     console.log('초기화');
+    //   }else{
+    //     console.log('연산')
+    //   }
+    // calInput.value = ``;
+    // console.log(a)
+      return baseVal;
+}
+
+function sedcondVal(){
+    //두번째 이후 값
+  console.log('두번째값');
+
+
+    // if(calVal !== ""){
+    //   // 숫자 있을 때
+    //   calVal = JSON.parse(calVal);
+    //   a = calVal; 
+    //   calInput.value = ``;
+    //   if(btnVal == 'C'){
+    //     console.log('초기화');
+    //   }else{
+    //     console.log('연산')
+    //   }
+
+    // }else{
+    //   // 처음 클릭시 음수값
+    //   if(btnVal == '-'){
+    //     calInput.value = btnVal;
+    //     calVal = btnVal;
+    //   }
+    // }
+}
+
+function operClick(e){
+  //연산자 클릭함수
   e.preventDefault();
-  e.addEventListener('click',numClick);
-  console.log(e.target)
-  const btn = e.target.value;
-  console.log(btn);
-  // calInput.value = btn.value;
+  const btnVal = e.target.value;
+  let a = "";
+
+  if (a !== ""){
+    sedcondVal();
+  }else{
+    a = Number(calInput.value);
+    calInput.value = ``;
+    firstVal(a);
+  }
+}
+
+function numClick(e){
+  //숫자 클릭 함수
+  e.preventDefault();
+  const btnVal = e.target.value;
+  let calVal = calInput.value;
+  if(calVal == ''){
+    //값X
+    calInput.value = btnVal;
+    calVal = btnVal;
+  }else{
+    // 값O
+    calInput.value = `${calVal}${btnVal}`;
+  }
 
 }
 
-console.log(numbtn)
 function init(){
-
-  // numbtn.addEventListener('click',numClick);
+  for(let i = 0;i < numbtn.length; i++){
+    let eachBtn = numbtn[i];
+    eachBtn.addEventListener('click',numClick);
+  }
+  for(let i = 0;i < operbtn.length; i++){
+    let eachBtn = operbtn[i];
+    eachBtn.addEventListener('click',operClick);
+  }
 }
 
 init();
