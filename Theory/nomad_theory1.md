@@ -70,6 +70,8 @@
 - Boolean(불리안) : true / false 참/거짓으로 구분
 - Number(넘버) : 숫자타입(정수)
 - Float(플롯) : 소숫점이 있는 수(실수)
+- 타입변경
+  - String(값) / Number(값)
 
 
 
@@ -237,10 +239,24 @@ input.placeholder = "원하는 값"
 ##### JSON.stringify
 
 - object > string
+- JSON.stringify(변경할값)
 
 ##### JSON.parse
 
 - string > object 
+- JSON.parse(변경할값)
+
+
+
+####   typeof 
+
+- 값의 타입 확인하기
+
+  ```
+  console.log(값,typeof calVal) // 숫자, string
+  값 = JSON.parse(값);
+  console.log(값,typeof calVal) // 숫자,"number"
+  ```
 
 
 
