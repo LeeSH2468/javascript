@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    .clearfix:after{content:" "; clear:both; display:block;}
+    h1{margin:50px 0 ;text-align: center;}
+    .calculator{width:320px; margin:auto; padding:30px; background-color:#232425; border-radius: 20px; box-sizing: border-box;}
+    .calculator form{position:relative; width:100%; height:40px; }
+    .calculator form input[type="number"]{position:absolute; top:0; left:0; width:100%; height:100%; border:0; border-radius: 10px; background-color:transparent; color:#fff; text-align:right; font-size: 1.5rem; overflow: hidden;}
+    .calculator form input:focus{outline: none;}
+    .calculator .btn{width:55px; height:55px; margin:4px; border-radius: 50px; background-color: #3c4043; border:0; color:#fff; font-size:1.1rem; text-align: center; outline: none; cursor: pointer;}
+    .calculator .operbtn{background-color:#f19129}
+    .calculator .resetbtn{width:100%; height: 45px; margin-bottom:8px; background-color: #3c4043;}
+    .numberbox{float:left; width:80%;}
+    .operbox{float:right; width:20%;}
+
+
+  </style>
+</head>
+<body>
+  <h1>Calculator</h1>
+  <div class="calculator clearfix">
+    <form>
+      <input type="number" readonly id="numberInput">
+      <input type="number" readonly id="result">
+    </form>
+    <div>
+      <input type="button" id="clear" class="btn resetbtn operbtn" value="C" ><br />
+    </div>
+    <div class="numberbox">
+      <input type="button" class="btn numbtn" value="1">
+      <input type="button" class="btn numbtn" value="2">
+      <input type="button" class="btn numbtn" value="3"><br />
+      <input type="button" class="btn numbtn" value="4">
+      <input type="button" class="btn numbtn" value="5">
+      <input type="button" class="btn numbtn" value="6"><br />
+      <input type="button" class="btn numbtn" value="7">
+      <input type="button" class="btn numbtn" value="8">
+      <input type="button" class="btn numbtn" value="9"><br />
+      <input type="button" class="btn numbtn" value="0">
+      <input type="button" class="btn numbtn" value=".">
+      <input type="button" id="endbtn" class="btn operbtn" value="=">
+    </div>
+    <div class="operbox">
+      <input type="button" id="pulbtn" class="btn operbtn" value="+"><br />
+      <input type="button" id="minbtn" class="btn operbtn" value="-"><br />
+      <input type="button" id="mulbtn" class="btn operbtn" value="*"><br />
+      <input type="button" id="divbtn" class="btn operbtn" value="/"><br />
+    </div>
+  </div>
+  
+<script>
+
+const btn = document.querySelectorAll('.btn');
+const numbtn = document.querySelectorAll('.numbtn');
+const operbtn = document.querySelectorAll('.operbtn');
+const calform = document.querySelector('form');
+const numberInput = calform.querySelector('#numberInput');
+const result = calform.querySelector('#result');
+const clear = document.querySelector('#clear');
+const endbtn = document.querySelector('#endbtn');
+const pulbtn = document.querySelector('#pulbtn');
+const minbtn = document.querySelector('#minbtn');
+const divbtn = document.querySelector('#divbtn');
+const mulbtn = document.querySelector('#mulbtn');
+
+let temp;
+let operator;
+
+pulbtn.addEventListener('click',() => {
+  if(temp){
+    //임시값 여부 체크
+    operator="+"
+    numberInput.value = null
+  }else{
+    if(numberInput.value){
+    temp = Number(numberInput.value);
+    operator = '+' //변수에는 문자열만 가능
+    numberInput.value = null
+    result.value = null    
+    }
+  }
+
+});
+minbtn.addEventListener('click',() => {
+  if(temp){
+    //임시값 여부 체크
+    operator="-"
+    numberInput.value = null
+  }else{
+    if(numberInput.value){
+      temp = Number(numberInput.value);
+      operator = '-' //변수에는 문자열만 가능
+      numberInput.value = null
+      result.value = null
+    }
+  }
+});
+divbtn.addEventListener('click',() => {
+  if(temp){
+    //임시값 여부 체크
+    operator="/"
+    numberInput.value = null
+  }else{
+    if(numberInput.value){
+      temp = Number(numberInput.value);
+      operator = '/' //변수에는 문자열만 가능
+      numberInput.value = null
+      result.value = null
+    }
+  }
+});
+mulbtn.addEventListener('click',() => {
+  if(temp){
+    //임시값 여부 체크
+    operator="*"
+    numberInput.value = null
+  }else{
+    if(numberInput.value){
+      temp = Number(numberInput.value);
+      operator = '*' //변수에는 문자열만 가능
+      numberInput.value = null
+      result.value = null
+    }
+  }
+});
+
+
+
+
+
+clear.addEventListener('click',() => {
+    temp = '';
+    operator = '';
+    numberInput.value = '';
+    result.value = '';
+});
+
+
+function handlCla(){
+  if(operator){//연산자가 있을 때    
+    if(numberInput.value){ //값이 있을 떄
+        if(operator === '+'){
+          result.value = temp + Number(numberInput.value);
+          temp = Number(numberInput.value);
+        }else if(operator === '-'){
+          result.value = temp - Number(numberInput.value);
+          temp = Number(numberInput.value);
+        }else if(operator === '*'){
+          result.value = temp * Number(numberInput.value);
+          temp = Number(numberInput.value);
+        }else if(operator === '/'){
+          result.value = temp / Number(numberInput.value);
+          temp = Number(numberInput.value);
+        }        
+        console.log(numberInput.value)
+
+    }
+  }else{
+    if(numberInput.value){
+      numberInput.value = temp;
+    }
+  }
+
+}
+
+function handlRresult(){
+  handlCla()
+  numberInput.value = null
+  temp = '';
+  operator = '';
+}
+
+function sedcondVal(){
+  console.log('값x')
+
+}
+function firstVal(temp){
+  console.log(temp,'값o')
+}
+
+function operClick(e){
+  e.preventDefault();
+  const btnVal = e.target.value;
+
+    // firstVal(temp);
+  
+  
+}
+
+function numClick(e){
+  //숫자 클릭 함수
+  e.preventDefault();
+  const btnVal = e.target.value;
+  let calVal = numberInput.value;
+
+  if(calVal == ''){
+    //값X
+    if(temp === '' && operator === ''){
+      result.value = '';
+    }
+    numberInput.value = btnVal;
+    calVal = btnVal;
+  }else{
+    // 값O
+    numberInput.value = `${calVal}${btnVal}`;
+  }
+  
+}
+
+
+function init(){
+endbtn.addEventListener('click',handlRresult);
+
+for(let i = 0;i < operbtn.length; i++){
+    let eachBtn = operbtn[i];
+    eachBtn.addEventListener('click',operClick);
+  }
+for(let i = 0;i < numbtn.length; i++){
+    let eachBtn = numbtn[i];
+    eachBtn.addEventListener('click',numClick);
+  }
+}
+init()
+
+
+</script>
+</body>
+</html>
