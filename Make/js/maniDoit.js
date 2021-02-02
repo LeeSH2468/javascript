@@ -1,33 +1,41 @@
-const h1 = document.querySelector('h1');
+const nameh1 = document.querySelector('h1');
 const nameForm = document.querySelector('.title');
 const nameInput = nameForm.querySelector('input');
 const NAME_LS = "name";
 const userName = localStorage.getItem(NAME_LS);
 
+function saveName(text){
+    localStorage.setItem();
+
+}
 
 function askName(){
-    h1.classList.remove('hide');
-    h1.classList.add('show');
+    nameForm.addEventListener('submit',handelName);
+    nameh1.style.display = 'none';
+    nameForm.style.display = 'flex';
 }
 
 function handelName(e){
     e.preventDefault();
     const nameValue = nameInput.value;
+    writeName(nameValue);
+    saveName(nameValue);
 }
 
-function writeName(){
+function writeName(text){
     // 이름 입력
-    nameForm.addEventListener('submit',handelName);
-    nameForm.classList.remove('show');
-    nameForm.classList.add('hide');
+    
+    nameForm.style.display = 'none';
 }
 
 function loadName(){
     // 이름 저장
     if(userName !== null){
+        //값O
         writeName();
-        h1.innerText = ` Do It !`
+        nameh1.innerText = ` Do It !`
     }else{
+        //값X
         askName();
     }
 }
