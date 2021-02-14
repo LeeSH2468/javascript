@@ -2,10 +2,12 @@ const nameh1 = document.querySelector('h1');
 const nameForm = document.querySelector('.title');
 const nameInput = nameForm.querySelector('input');
 const NAME_LS = "username";
+const planBoard = document.querySelector('.plan_board');
 
+
+// 1. 이름입력하기
 function saveName(text){
     localStorage.setItem(NAME_LS,text);
-
 }
 
 function askName(){
@@ -24,6 +26,7 @@ function handelName(e){
 function writeName(text){
     // 이름 입력
     nameForm.style.display = 'none';
+    planBoard.style.display = 'block';
     nameh1.classList.remove('hide');
     nameh1.innerText = `${text}, Do It !`
 }
@@ -40,8 +43,6 @@ function loadName(){
     }
 }
 
-function init(){
-loadName();
-}
+// 2. 할 일 추가
 
-init();
+loadName();

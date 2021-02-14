@@ -14,12 +14,29 @@
         <form class="title">
             <input type="text" placeholder="Who are you?">
         </form>
-        <div class="plan_board">
+        <div class="plan_board clearfix">
             <div class="addtask">
-                <input type="text" placeholder="new task">
-                <input type="textarea" placeholder="memo">
+                <h2>add task</h2>
+                <input type="text" placeholder="new task" class="task_box">
+                <textarea placeholder="memo" class="memo_box"></textarea>
                 <button type="submit">+</button>
             </div>
+            <ul class="tasklist">
+                <li>
+                    <div class="taskback"></div>
+                    <div class="taskfront">
+                        <div class="task_title">
+                            <span>할 일</span>
+                            <button>edit</button>
+                            <button>X</button>
+                        </div>
+                        <div class="test_memo">
+                            <span class="fontmedium">오늘의 할 일을 입력하세요.</span>
+                            <button>edit</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 <script src="../js/maniDoit.js"></script>
